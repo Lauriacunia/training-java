@@ -35,7 +35,7 @@ public class Ej1 {
             System.out.println("Ingrese una cadena ('S' o 's' para salir):");
             // Lee una línea de la entrada estándar
             cadena = scanner.nextLine();
-            if (cadena.equalsIgnoreCase("exit")) {
+            if (cadena.equalsIgnoreCase("s")) {
                 // Si el usuario ingresa 'exit', termina el programa
                 break;
             }
@@ -54,7 +54,7 @@ public class Ej1 {
             System.out.println("Ingrese un double ('S' o 's' para salir):");
             // Lee una línea de la entrada estándar
             String input = scanner.nextLine();
-            if (input.equalsIgnoreCase("exit")) {
+            if (input.equalsIgnoreCase("s")) {
                 // Si el usuario ingresa 'exit', termina el programa
                 break;
             }
