@@ -6,46 +6,89 @@ import java.util.*;
 public class Ej1 {
 
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-        // Crea un objeto Scanner para leer la entrada estándar
         Scanner scanner = new Scanner(System.in);
 
-        // Imprime instrucciones para el usuario
-        System.out.println("Ingrese un entero:");
-        // Lee un entero de la entrada estándar
-        int entero;
-        if (scanner.hasNextInt()) {
-            entero = scanner.nextInt();
-        } else {
-            // Si el usuario no ingresó un entero, muestra un mensaje de error y termina el programa
-            System.err.println("Error: no se ingresó un entero");
-            return;
-        }
+        int entero = 0;
+        double doble = 0.0;
+        String cadena = "";
 
-        // Imprime instrucciones para el usuario
-        System.out.println("Ingrese un double:");
-        // Lee un double de la entrada estándar
-        double doble;
-        if (scanner.hasNextDouble()) {
-            doble = scanner.nextDouble();
-        } else {
-            // Si el usuario no ingresó un double, muestra un mensaje de error y termina el programa
-            System.err.println("Error: no se ingresó un double");
-            return;
-        }
-        scanner.nextLine(); // Leer la nueva línea después del double
+        entero = getEntero(scanner);
+        doble = getDoble(scanner, doble);
+        cadena = getString(scanner);
 
-        // Imprime instrucciones para el usuario
-        System.out.println("Ingrese una cadena:");
-        // Lee una cadena de la entrada estándar
-        String cadena = scanner.nextLine();
+        printAll(cadena, doble, entero);
 
-        // Imprime el entero, el double y la cadena según las instrucciones
+        scanner.close();
+    }
+
+    private static void printAll(String cadena, double doble, int entero) {
+        System.out.println("Valores ingresados:");
         System.out.println("String: " + cadena);
         System.out.println("Double: " + doble);
         System.out.println("Int: " + entero);
+    }
 
-        // Cierra el objeto Scanner
-        scanner.close();
+    private static String getString(Scanner scanner) {
+        String cadena;
+        while (true) {
+            // Imprime instrucciones para el usuario
+            System.out.println("Ingrese una cadena ('S' o 's' para salir):");
+            // Lee una línea de la entrada estándar
+            cadena = scanner.nextLine();
+            if (cadena.equalsIgnoreCase("exit")) {
+                // Si el usuario ingresa 'exit', termina el programa
+                break;
+            }
+            // Si la cadena no está vacía, sale del bucle
+            if (!cadena.isEmpty()) {
+                break;
+            }
+            // Si la cadena está vacía, muestra un mensaje de error y vuelve a pedir al usuario que ingrese una cadena
+            System.err.println("Error: no se ingresó una cadena válida");
+        }
+        return cadena;
+    }
+
+    private static double getDoble(Scanner scanner, double doble) {
+        while (true) {
+            System.out.println("Ingrese un double ('S' o 's' para salir):");
+            // Lee una línea de la entrada estándar
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("exit")) {
+                // Si el usuario ingresa 'exit', termina el programa
+                break;
+            }
+            // Intenta convertir la entrada en un double
+            try {
+                doble = Double.parseDouble(input);
+                // Si tiene éxito, sale del bucle
+                break;
+            } catch (NumberFormatException e) {
+                // Si falla, muestra un mensaje de error y vuelve a pedir al usuario que ingrese un double
+                System.err.println("Error: no se ingresó un double válido");
+            }
+        }
+        return doble;
+    }
+
+    private static int getEntero(Scanner scanner) {
+        int entero;
+        while (true) {
+            System.out.println("Ingrese un entero ('S' o 's' para salir):");
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("S")) {
+                // Si el usuario ingresa 'S', termina el programa
+                System.exit(0);
+            }
+            try {
+                entero = Integer.parseInt(input);
+                // Si tiene éxito, sale del bucle
+                break;
+            } catch (NumberFormatException e) {
+                // Si falla, muestra un mensaje de error y vuelve a pedir al usuario que ingrese un entero
+                System.err.println("Error: no se ingresó un entero válido");
+            }
+        }
+        return entero;
     }
 }
